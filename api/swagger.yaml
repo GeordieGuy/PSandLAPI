@@ -1,0 +1,52 @@
+---
+swagger: "2.0"
+info:
+  description: "The API for Purple Savings And Loans"
+  version: "1.0"
+  title: "Purple Savings and Loans"
+host: "virtserver.swaggerhub.com"
+basePath: "/gguy/PSANDL/1.0"
+schemes:
+- "https"
+paths:
+  /account:
+    get:
+      description: "Returns account info"
+      operationId: "accountGET"
+      parameters: []
+      responses:
+        "200":
+          description: "Successfully returned a list of accounts"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/inline_response_200"
+        "400":
+          description: "Invalid request"
+          schema:
+            $ref: "#/definitions/inline_response_400"
+      x-swagger-router-controller: "Default"
+definitions:
+  inline_response_200:
+    type: "object"
+    required:
+    - "accountID"
+    properties:
+      balance:
+        type: "integer"
+      account_name:
+        type: "string"
+      account_address:
+        type: "string"
+      accountID:
+        type: "integer"
+    example:
+      accountID: 6
+      balance: 0
+      account_name: "account_name"
+      account_address: "account_address"
+  inline_response_400:
+    type: "object"
+    properties:
+      message:
+        type: "string"
